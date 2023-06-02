@@ -41,18 +41,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 // Sealed classes are used for representing restricted class hierarchies
 // where a value can have one of the types from a limited set. Here, it is used to classify a row as either a Header or an ItemEntry
-sealed class ItemRow {
-    // This class represents a header row with a list ID
-    data class Header(val listId: Int) : ItemRow()
-    // This class represents an item entry row with an item
-    data class ItemEntry(val item: Item) : ItemRow()
-}
 
 // MainActivity is the starting point of the application. It extends ComponentActivity which is a base class for activities that want to use the new 'androidx.activity' APIs.
 class MainActivity : ComponentActivity() {
-
     private lateinit var mainViewModel: MainViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -75,7 +67,7 @@ class MainActivity : ComponentActivity() {
         }
 
         // Initialize MainViewModel with ViewModelFactory
-        mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         // Set up the UI
         setContent {
@@ -91,7 +83,7 @@ class MainActivity : ComponentActivity() {
                         )
                         Spacer(modifier = Modifier.padding(top = 16.dp))
                     }
-                    DisplayItems(mainViewModel)
+                    DisplayItems()
                 }
             }
         }
@@ -105,9 +97,8 @@ class MainActivity : ComponentActivity() {
 // Otherwise, it displays the items grouped by their list ID.
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DisplayItems(viewModel: MainViewModel) {
+fun DisplayItems() {
     val viewModel: MainViewModel = viewModel()
-
     val isLoading: Boolean by viewModel.isLoading.observeAsState(false)
     val items: List<Item> by viewModel.itemsLiveData.observeAsState(emptyList())
     val error: String by viewModel.errorLiveData.observeAsState("")

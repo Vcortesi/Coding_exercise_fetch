@@ -23,7 +23,6 @@ import java.util.concurrent.CountDownLatch
 
 // Define a MainViewModelTest class to hold all testing scenarios.
 class MainViewModelTest {
-
     // Define a list of items that will be used in the tests.
     private val items = listOf(
         Item(4, 1, "Item 4"),
@@ -45,8 +44,6 @@ class MainViewModelTest {
     private lateinit var itemsObserver: Observer<in List<Item>?>
     @Mock
     private lateinit var errorObserver: Observer<String>
-    @Mock
-    private lateinit var isLoadingObserver: Observer<Boolean>
 
     // The main view model which we'll be testing.
     private lateinit var mainViewModel: MainViewModel
@@ -233,10 +230,8 @@ class MainViewModelTest {
     }
 
     // This helper function creates a ResponseBody from a string.
-    @Suppress("UNCHECKED_CAST")
     private fun <T> mockResponseBody(data: T): ResponseBody {
         // Convert the data to a string and create a ResponseBody.
-        val responseBody = ResponseBody.create(null, data.toString())
-        return responseBody
+        return ResponseBody.create(null, data.toString())
     }
 }
