@@ -39,9 +39,6 @@ import androidx.lifecycle.ViewModelProvider
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// Sealed classes are used for representing restricted class hierarchies
-// where a value can have one of the types from a limited set. Here, it is used to classify a row as either a Header or an ItemEntry
-
 // MainActivity is the starting point of the application. It extends ComponentActivity which is a base class for activities that want to use the new 'androidx.activity' APIs.
 class MainActivity : ComponentActivity() {
     private lateinit var mainViewModel: MainViewModel
