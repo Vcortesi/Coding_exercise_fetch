@@ -48,3 +48,10 @@ Through this process, I learned how to write testable code, create mock objects,
 It was a valuable experience that improved my confidence in writing reliable and testable code.
 
 Overall, this project helped me deepen my understanding of Kotlin, Android development, and software testing.
+
+## Improvements/Changes
+
+- Use a better separation of concerns
+- Incorperate repository layers to help with organization of code structure
+- Add recoverability from a non-successful response
+- Fix orientation changes breaking layout
